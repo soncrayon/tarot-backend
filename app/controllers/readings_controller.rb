@@ -1,3 +1,0 @@
-class ReadingsController < ApplicationController
-  
-end
