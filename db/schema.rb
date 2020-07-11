@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_202529) do
+ActiveRecord::Schema.define(version: 2020_07_06_235653) do
 
   create_table "cards", force: :cascade do |t|
-    t.string "title"
-    t.string "image"
-    t.text "description"
-    t.integer "reading_id", null: false
+    t.string "name"
+    t.text "summary"
+    t.text "full_meaning"
+    t.string "upright"
+    t.string "reversed"
+    t.text "image"
+    t.integer "reading_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["reading_id"], name: "index_cards_on_reading_id"

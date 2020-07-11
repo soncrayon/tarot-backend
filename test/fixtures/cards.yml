@@ -1,13 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  name: MyString
+  summary: MyText
+  full_meaning: MyText
+  upright: MyString
+  reversed: MyString
   image: MyString
-  description: MyText
   reading: one
 
 two:
-  title: MyString
+  name: MyString
+  summary: MyText
+  full_meaning: MyText
+  upright: MyString
+  reversed: MyString
   image: MyString
-  description: MyText
   reading: two

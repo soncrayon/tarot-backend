@@ -20,13 +20,13 @@ User.create({first_name:"Curtis", last_name:"Arnold"})
 end
 
 Card.create([
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.first.id}, 
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.second.id}, 
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.third.id}, 
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.third.id}, 
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.fourth.id}, 
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.last.id}, 
-    {title:"card", image:"image", description:"Here's a description", reading_id:Reading.last.id}
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.first.id}, 
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.second.id}, 
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.third.id}, 
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.third.id}, 
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.fourth.id}, 
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.last.id}, 
+    {name:"card", image:"image", summary:"Here's a description", reading_id:Reading.last.id}
 ])
 
 
