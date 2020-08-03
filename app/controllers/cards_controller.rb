@@ -1,23 +1,23 @@
 class CardsController < ApplicationController
 
     before_action :set_card, only: [:show, :destroy]
+    before_action :set_reading
     
     def index
         @cards = Card.all
-        render json: @cards
+        return @cards.to_json
     end
 
     def create
-        @card = Card.new(card_params)
-            if @card.save
-                render json: @card
-            else
-                render json: {error: 'Error saving card'}
-            end 
+       render card_params.to_h.map { |period, card| 
+        @card = Card.new(card)
+        @card['reading_id'] = @reading.id 
+        @card.save 
+        }.to_json
     end
 
     def show 
-       render json: @card
+       return @card.to_json
     end
 
     def destroy
@@ -27,11 +27,17 @@ class CardsController < ApplicationController
     private
 
     def card_params
-        params.require(:card).permit(:name, :summary, :full_meaning, :upright, :reversed, :image, :reading_id)
+        params.require(:card).permit(:past => [:period, :card_name, :card_full_meaning, :card_upright, :card_reversed, :card_image, :card_orientation, :reading_id],
+        :present => [:period, :card_name, :card_full_meaning, :card_upright, :card_reversed, :card_image, :card_orientation, :reading_id],
+        :future => [:period, :card_name, :card_full_meaning, :card_upright, :card_reversed, :card_image, :card_orientation, :reading_id])
     end
 
     def set_card
         @card = Card.find(params[:id])
+    end
+
+    def set_reading
+        @reading = Reading.create 
     end
 
 end

@@ -10,7 +10,7 @@ past, present, and future.
 The user should then be able to either "refresh" the 
 reading and start again or save the reading; relatedly,
 users should be able to re-draw a card that's already 
-been draw by simply clicking a "Draw" button again.
+been drawn by simply clicking a "Draw" button again.
 
 A user should be able to access all of their stored 
 readings (stored in the backend) from a dedicated
@@ -23,6 +23,9 @@ be able to persist any changes to the backend.  The user
 should also have the ability to delete cards from the
 reading as well as delete the entire reading. 
 
+{The delete a card function shouldn't be necessary because
+the PUT will just replace any individual cards; } 
+
 Finally, a user should be able to see "Cards of the 
 Day" for AM and PM in a third space on the application 
 page that are drawn at random but with the ability to 
@@ -32,3 +35,9 @@ Additional features could include a metrics page
 that collects data from all users (most drawn card, etc.)
 or potentially some social functionality like comments 
 or likes.  
+
+## New plan for saving cards and readings
+
+Create card on back end each time a user clicks a draw card on the front end;
+Delete cards from state and from the backend when cards are clicked;
+Associate a reading ID to all created cards on the backend when the user wants to save a reading 
