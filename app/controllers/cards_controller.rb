@@ -4,20 +4,19 @@ class CardsController < ApplicationController
     before_action :set_reading
     
     def index
-        @cards = Card.all
-        return @cards.to_json
+        render Card.all.to_json
     end
 
     def create
-       render card_params.to_h.map { |period, card| 
+       render json: card_params.to_h.map { |period, card| 
         @card = Card.new(card)
         @card['reading_id'] = @reading.id 
         @card.save 
-        }.to_json
+        }
     end
 
     def show 
-       return @card.to_json
+       render @card.to_json
     end
 
     def destroy
@@ -37,7 +36,8 @@ class CardsController < ApplicationController
     end
 
     def set_reading
-        @reading = Reading.create 
+        now = Time.new.strftime("%a, %B %d, %Y at %I:%M %p")
+        @reading = Reading.create({date: now})
     end
 
 end

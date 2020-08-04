@@ -3,12 +3,11 @@ class ReadingsController < ApplicationController
     before_action :set_reading, only: [:show, :destroy]
     
     def index 
-        @readings = Reading.all
-        render json: @readings
+        render json: Reading.all
     end
 
     def show 
-       render json: @reading.cards 
+       render json: @reading.cards
     end
 
     def destroy

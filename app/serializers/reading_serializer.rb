@@ -1,5 +1,5 @@
 class ReadingSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :date
   has_many :cards
 end
 
