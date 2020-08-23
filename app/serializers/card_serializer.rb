@@ -1,4 +1,5 @@
 class CardSerializer < ActiveModel::Serializer
-  attributes :id, :card_name, :card_full_meaning, :card_upright, :card_reversed, :card_image, :card_orientation, :period
+  attributes :id, :period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation
   has_one :reading, optional: true 
+  has_one :user, optional: true
 end

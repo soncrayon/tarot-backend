@@ -5,26 +5,42 @@
 # #
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
-# Card.delete_all
-# Reading.delete_all
-# User.delete_all
+Card.delete_all
+Reading.delete_all
+User.delete_all
 
 
-# User.create({first_name:"Curtis", last_name:"Arnold"})
+User.create({first_name:"Curtis", last_name:"Arnold", email:"hello@hello.com", password_digest: User.digest('123')})
 
-# 5.times do 
-#     Reading.create([
-#         {date:Date.today,
-#     user_id:User.first.id}
-#     ])
-# end
+5.times do 
+    Reading.create
+end
 
-# # need to be able to create readings without a user_id, at least for now 
+# need to be able to create readings without a user_id, at least for now 
 
-# Card.create([
-#     {card_img:"image", reading_id:Reading.first.id}, 
-#     {card_img:"image", reading_id:Reading.second.id}, 
-    
-# ])
+Card.create([
+
+    {period: "period", 
+    name: "name1", 
+    full_meaning: "full_meaning", 
+    upright_meaning: "upright_meaning", 
+    reversed_meaning: "reversed_meaning", 
+    orientation: "orientatation",
+    image:"image", 
+    reading_id:Reading.first.id, 
+    user_id:User.first.id}, 
+
+
+    {period: "period", 
+    name: "name2", 
+    full_meaning: "full_meaning", 
+    upright_meaning: "upright_meaning", 
+    reversed_meaning: "reversed_meaning", 
+    orientation: "orientatation",
+    image:"image", 
+    reading_id:Reading.third.id, 
+    user_id:User.first.id}
+
+])
 
 
