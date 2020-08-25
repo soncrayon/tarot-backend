@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_224750) do
   create_table "readings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "date_time_created"
   end
 
   create_table "users", force: :cascade do |t|

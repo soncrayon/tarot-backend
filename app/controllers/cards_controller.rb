@@ -27,9 +27,9 @@ class CardsController < ApplicationController
 
     def card_params
         
-        params.require(:card).permit(:past => [:id, :period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation, :reading_id, :user_id],
-        :present => [:id, :period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation, :reading_id, :user_id],
-        :future => [:id, :period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation, :reading_id, :user_id])
+        params.require(:card).permit(:past => [:period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation, :reading_id, :user_id],
+        :present => [:period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation, :reading_id, :user_id],
+        :future => [:period, :name, :full_meaning, :upright_meaning, :reversed_meaning, :image, :orientation, :reading_id, :user_id])
         
     end
 
@@ -38,9 +38,7 @@ class CardsController < ApplicationController
     end
 
     def set_reading
-        # the below is not giving me what I need in terms of format (maybe just get raw timestamp then handle on frontend?)
-        # now = Time.new.strftime("%a, %B %d, %Y at %I:%M %p")
-        @reading = Reading.create
+        @reading = Reading.create({date_time_created: Time.now.strftime('%a %d %b %Y, %l:%M %p')})
     end
 
 end
