@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 
-    before_action :set_reading, only: [:create, :show, :destroy]
+    before_action :create_reading, only: [:create]
     before_action :set_card, only: [:show, :destroy]
     
     def index 
@@ -20,7 +20,11 @@ class CardsController < ApplicationController
     end
 
     def destroy
-        @card.destroy 
+        byebug
+        card_params.to_h.map { |period, card| 
+            card.destroy
+        }
+        @reading_to_delete.destroy 
     end
 
     private
@@ -37,8 +41,12 @@ class CardsController < ApplicationController
         @card = Card.find(params[:id])
     end
 
-    def set_reading
+    def create_reading
         @reading = Reading.create({date_time_created: Time.now.strftime('%a %d %b %Y, %l:%M %p')})
+    end
+
+    def set_reading
+        @reading_to_delete = Reading.find(params[:id])
     end
 
 end
