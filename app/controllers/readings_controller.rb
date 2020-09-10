@@ -6,6 +6,11 @@ class ReadingsController < ApplicationController
         render json: Reading.all
     end
 
+    def show_loggedin_user_readings
+        @readings = User.find(params[:id]).readings.uniq 
+        render json: @readings 
+    end
+
     def show 
        render json: @reading.cards
     end
@@ -19,7 +24,5 @@ class ReadingsController < ApplicationController
     def set_reading 
         @reading = Reading.find(params[:id])
     end
-
-    
 
 end
