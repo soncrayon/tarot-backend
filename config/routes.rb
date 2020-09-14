@@ -9,6 +9,15 @@ Rails.application.routes.draw do
           get '/logged_in', to: 'sessions#is_logged_in?'
 
           get '/loggedin_user_readings/:id', to: 'readings#show_loggedin_user_readings'
+
+          get '/user_suit_percentages/:id', to: 'users#user_suit_percentages'
+          get '/user_orientation_percentages/:id', to: 'users#user_orientation_percentages'
+          get '/all_suit_percentages', to: 'users#all_suit_percentages'
+          get '/all_orientation_percentages', to: 'users#all_orientation_percentages'
+
+
+
+
           
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
         else
           render json: {
             logged_in: false,
-            message: 'That user does not exist.'
+            message: 'The user is not currently logged in.'
           }
         end
     end
