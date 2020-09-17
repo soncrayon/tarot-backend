@@ -19,7 +19,7 @@ class User < ApplicationRecord
   def self.suit_percentages_for_all_users
     suits = @@users.map { |user| 
       user.cards.map{ |card| 
-        (card.name.include?("cups") || card.name.include?("pentacles") || card.name.include?("swords") || card.name.include?("wands")) ?  card.name.split("-")[-1] : "major arcana" 
+        (card.name.include?("cups") || card.name.include?("pentacles") || card.name.include?("swords") || card.name.include?("wands")) ?  card.name.split("-")[-1] : "major_arcana" 
       }
     }.flatten
     suit_counts = suits.each_with_object(Hash.new(0)) { |suit,counts| counts[suit] += 1 }
@@ -35,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def suit_percentages_for_current_user
-    suits = self.cards.map { |card| (card.name.include?("cups") || card.name.include?("pentacles") || card.name.include?("swords") || card.name.include?("wands")) ?  card.name.split("-")[-1] : "major arcana" }
+    suits = self.cards.map { |card| (card.name.include?("cups") || card.name.include?("pentacles") || card.name.include?("swords") || card.name.include?("wands")) ?  card.name.split("-")[-1] : "major_arcana" }
     suit_counts = suits.each_with_object(Hash.new(0)) { |suit,counts| counts[suit] += 1 }
     suit_counts.each { |suit, count| suit_counts[suit] = (count.to_f/suits.length * 100).round}
     suit_counts
