@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
           get '/loggedin_user_readings/:id', to: 'readings#show_loggedin_user_readings'
 
-          get '/user_suit_percentages/:id', to: 'users#user_suit_percentages'
+          get '/user_arcana_percentages/:id', to: 'users#user_arcana_percentages'
           get '/user_orientation_percentages/:id', to: 'users#user_orientation_percentages'
-          get '/all_suit_percentages', to: 'users#all_suit_percentages'
+          get '/all_arcana_percentages', to: 'users#all_arcana_percentages'
           get '/all_orientation_percentages', to: 'users#all_orientation_percentages'
 
 

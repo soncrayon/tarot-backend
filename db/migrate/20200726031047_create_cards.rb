@@ -9,7 +9,7 @@ class CreateCards < ActiveRecord::Migration[6.0]
       t.string :image
       t.string :orientation
       t.belongs_to :reading, null: true, foreign_key: true
-      t.belongs_to :user, null: true, foreign_key: true
+      
     end
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :update, :destroy, :user_suit_percentages, :user_orientation_percentages] 
+  before_action :set_user, only: [:show, :update, :destroy, :user_arcana_percentages, :user_orientation_percentages] 
   
     def index
       render json: User.all 
@@ -21,31 +21,42 @@ class UsersController < ApplicationController
       else 
         render json: {
           status: 500,
-          errors: @user.errors.full_messages
+          signup_errors: @user.errors.full_messages
         }
       end
     end
 
     def update
-      if @user.update(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], password:user_params[:password])
-        render json: {
-          status: "updated",
-          user: @user
-        } 
-      else
-        render json: {
-          status: 500, 
-          errors: @user.errors.full_messages
-        }
-      end
+      update_params = user_params.select{ |k, v| !v.empty? }
+      update_params.each { |k, v| 
+        update_item = Hash[k, v]
+        @user.update(update_item)
+      }
+      render json: {
+        status: "updated",
+        user: @user
+      }
     end
 
-    def user_suit_percentages
-      render json: @user.suit_percentages_for_current_user
+    def destroy  
+      if @user.destroy 
+          render json: {
+            status: "deleted"
+          }
+        else
+          render json: {
+            status: 500,
+            errors: "user not deleted"
+          }
+        end
     end
 
-    def all_suit_percentages
-      render json: User.suit_percentages_for_all_users
+    def user_arcana_percentages
+      render json: @user.arcana_percentages_for_current_user
+    end
+
+    def all_arcana_percentages
+      render json: User.arcana_percentages_for_all_users
     end
 
     def user_orientation_percentages

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             user: @user
           }
         else
-          render json: { errors: ['Invalid login credentials.', 'Verify email and/or password or create an account.']}
+          render json: { login_errors: ['Invalid login credentials.', 'Verify email and/or password or create an account.']}
         end
   end
 
