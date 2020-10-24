@@ -14,6 +14,11 @@ Rails.application.routes.draw do
           get '/user_orientation_percentages/:id', to: 'users#user_orientation_percentages'
           get '/all_arcana_percentages', to: 'users#all_arcana_percentages'
           get '/all_orientation_percentages', to: 'users#all_orientation_percentages'
+          get '/user_highest_arcana_percentage/:id', to: 'users#user_highest_arcana_percentage'
+          get '/user_highest_orientation_percentage/:id', to: 'users#user_highest_orientation_percentage'
+          get '/all_highest_arcana_percentage', to: 'users#all_highest_arcana_percentage'
+          get '/all_highest_orientation_percentage', to: 'users#all_highest_orientation_percentage'
+
 
 
 

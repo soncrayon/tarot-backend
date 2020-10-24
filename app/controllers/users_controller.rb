@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :update, :destroy, :user_arcana_percentages, :user_orientation_percentages] 
+  before_action :set_user, only: [:show, :update, :destroy, :user_arcana_percentages, :user_orientation_percentages, :user_highest_arcana_percentage, :user_highest_orientation_percentage] 
   
     def index
       render json: User.all 
@@ -65,6 +65,22 @@ class UsersController < ApplicationController
 
     def all_orientation_percentages
       render json: User.orientation_percentages_for_all_users
+    end
+
+    def user_highest_arcana_percentage
+      render json: {highest: @user.highest_arcana_percentage_for_current_user}
+    end
+
+    def all_highest_arcana_percentage
+      render json: {highest: User.highest_arcana_percentage_for_all_users}
+    end
+
+    def user_highest_orientation_percentage
+      render json: {highest: @user.highest_orientation_percentage_for_current_user}
+    end
+
+    def all_highest_orientation_percentage
+      render json: {highest: User.highest_orientation_percentage_for_all_users}
     end
 
     private
