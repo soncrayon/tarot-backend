@@ -11,31 +11,43 @@ class UsersController < ApplicationController
     end
 
     def create
-      @user = User.new(user_params)
-      if @user.save
+      user = User.new(user_params)
+      if user.save
         login!
         render json: {
           status: "created",
-          user: @user
+          user: user
         }
       else 
         render json: {
           status: 500,
-          signup_errors: @user.errors.full_messages
+          signup_errors: user.errors.full_messages
         }
       end
     end
 
     def update
-      update_params = user_params.select{ |k, v| !v.empty? }
-      update_params.each { |k, v| 
-        update_item = Hash[k, v]
-        @user.update(update_item)
-      }
-      render json: {
-        status: "updated",
-        user: @user
-      }
+        errors_array = []
+        update_params = user_params.select{ |k, v| !v.empty? }
+        update_params.each { |k, v| 
+            update_item = Hash[k, v]
+            if @user.update(update_item)
+              puts @user
+            else 
+              errors_array << @user.errors.full_messages
+            end
+        }
+        if (errors_array.length > 0)
+          render json: {
+          status: 500,
+          update_errors: errors_array.flatten
+          }
+        else
+        render json: {
+          status: "updated",
+          user: @user
+        }
+        end
     end
 
     def destroy  

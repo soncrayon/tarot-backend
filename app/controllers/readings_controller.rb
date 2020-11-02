@@ -10,15 +10,12 @@ class ReadingsController < ApplicationController
         reading = Reading.new({date_time_created: Time.now.strftime('%a %d %b %Y, %l:%M %p'), user_id: reading_params[:user_id]})
         if reading.save 
             render json: reading
-        else
-            render json: 'error'
         end
     end
 
     def show_loggedin_user_readings
         readings = User.find(params[:id]).readings
         render json: readings 
-        
     end
 
     def show 
@@ -28,8 +25,6 @@ class ReadingsController < ApplicationController
     def destroy
         if @reading.destroy
             render json: @user.readings
-        else 
-            render json:'error'
         end 
     end
 

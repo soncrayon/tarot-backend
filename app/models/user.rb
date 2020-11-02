@@ -17,11 +17,16 @@ class User < ApplicationRecord
   end
 
   def self.arcana_percentages_for_all_users
+
     arcanas = @@users.map { |user| 
       user.cards.map{ |card| 
-        (card.name.include?("cups") || card.name.include?("pentacles") || card.name.include?("swords") || card.name.include?("wands")) ?  card.name.split("-")[-1] : "major_arcana" 
+        (card.name.include?("cups") || 
+        card.name.include?("pentacles") || 
+        card.name.include?("swords") || 
+        card.name.include?("wands")) ?  card.name.split("-")[-1] : "major_arcana" 
       }
     }.flatten
+    
     arcana_counts = arcanas.each_with_object(Hash.new(0)) { |arcana,counts| counts[arcana] += 1 }
     arcana_counts.each { |arcana, count| arcana_counts[arcana] = (count.to_f/arcanas.length * 100).round}
     arcana_counts
@@ -43,7 +48,12 @@ class User < ApplicationRecord
   end
 
   def arcana_percentages_for_current_user
-    arcanas = self.cards.map { |card| (card.name.include?("cups") || card.name.include?("pentacles") || card.name.include?("swords") || card.name.include?("wands")) ?  card.name.split("-")[-1] : "major_arcana" }
+
+    arcanas = self.cards.map { |card| (card.name.include?("cups") || 
+    card.name.include?("pentacles") || 
+    card.name.include?("swords") || 
+    card.name.include?("wands")) ?  card.name.split("-")[-1] : "major_arcana" }
+
     arcana_counts = arcanas.each_with_object(Hash.new(0)) { |arcana,counts| counts[arcana] += 1 }
     arcana_counts.each { |arcana, count| arcana_counts[arcana] = (count.to_f/arcanas.length * 100).round}
     arcana_counts

@@ -18,11 +18,5 @@ Rails.application.routes.draw do
           get '/user_highest_orientation_percentage/:id', to: 'users#user_highest_orientation_percentage'
           get '/all_highest_arcana_percentage', to: 'users#all_highest_arcana_percentage'
           get '/all_highest_orientation_percentage', to: 'users#all_highest_orientation_percentage'
-
-
-
-
-
           
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

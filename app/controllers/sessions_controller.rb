@@ -1,32 +1,19 @@
 class SessionsController < ApplicationController
     
-  def create
-    
-        @user = User.find_by(email: session_params[:email])
-      
-        if @user && @user.authenticate(session_params[:password])
-          login!
-          render json: {
-            logged_in: true,
-            user: @user
-          }
-        else
-          render json: { login_errors: ['Invalid login credentials.', 'Verify email and/or password or create an account.']}
-        end
-  end
+    def create
 
-    def is_logged_in?
-        if logged_in? && current_user
-          render json: {
-            logged_in: true,
-            user: current_user
-          }
-        else
-          render json: {
-            logged_in: false,
-            message: 'The user is not currently logged in.'
-          }
-        end
+          @user = User.find_by(email: session_params[:email])
+        
+          if @user && @user.authenticate(session_params[:password])
+            login!
+            render json: {
+              logged_in: true,
+              user: @user
+            }
+          else
+            render json: { login_errors: ['Invalid login credentials.', 'Verify email and/or password or create an account.']}
+          end
+
     end
 
     def destroy
